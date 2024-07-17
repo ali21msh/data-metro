@@ -1,0 +1,18 @@
+[SPARK]
+"spark.jars" = "jars/mysql-connector-j-8.0.33.jar,jars/postgresql-42.7.1.jar"
+"spark.memory.fraction" = "0.9"
+"spark.rdd.compress" = true
+"spark.submit.deployMode" = "client"
+"spark.executor.extraJavaOptions" = "-XX:+UseCompressedOops -XX:+UseG1GC"
+#"spark.sql.extensions" = "io.delta.sql.DeltaSparkSessionExtension"
+#"spark.sql.catalog.spark_catalog" = "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+"spark.archives" = "venv.tar.gz#environment"
+"spark.driver.host" = "45.61.174.247"
+"spark.driver.bindAddress" = "45.61.174.247"
+"spark.driver.port" = "4040"
+"spark.sql.debug.maxToStringFields" = "100"
+"spark.sql.execution.arrow.pyspark.enabled" = "true"
+"spark.shuffle.service.enabled" = "true"
+"spark.dynamicAllocation.enabled" = "true"
+"spark.dynamicAllocation.shuffleTracking" = "enabled"
+"spark.dynamicAllocation.minExecutors" = "1"

@@ -11,7 +11,7 @@ RUN python -m venv /app/venv && export PATH="/app/venv/bin:$PATH" &&  \
 COPY . .
 
 ENV PATH="/app/venv/bin:$PATH"
-ENV GIT_URL=-"https://git.routerhosting.com"
+ENV GIT_URL=-"https://github.com/ali21msh"
 ENV GIT_ACCESS_TOKEN="glpat-GUAtbvckyfy8wqwnuwzw"
 ENV GIT_REPO_ID=115
 ENV PIPELINE_PATH=pipeline.yml

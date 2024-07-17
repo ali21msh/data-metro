@@ -1,0 +1,48 @@
+settings:
+  "spark.app.name": "test-pipeline-ali"
+  "spark.master": "spark://0.0.0.0:7077"
+  "spark.driver.cores": "1"
+  "spark.driver.memory": "1g"
+  "spark.executor.instances": "2"
+  "spark.cores.max": "4"
+  "spark.executor.cores": "2"
+  "spark.executor.memory": "2g"
+
+nodes:
+  test_mysql_db:
+    type: "source"
+    stream: false
+    format: jdbc
+    options:
+      driver: "com.clickhouse.jdbc.ClickHouseDriver"
+      url: "jdbc:clickhouse:http://0.0.0.0:8123/testDB"
+      user: "default"
+      password: ""
+      database: "testDB"
+      query: |
+        select * from testDB.test
+
+  test-process:
+    type: "processor"
+    format: query
+    options:
+      parents:
+        - test_mysql_db
+      query: |
+       SELECT * FROM test_mysql_db
+
+
+  sink_data:
+      type: sink
+      stream: false
+      format: jdbc
+      parent: "test-process"
+      mode: append
+      options:
+        driver: "com.mysql.jdbc.Driver"
+        url: "jdbc:mysql://0.0.0.0:3306/testDB"
+        user: "test"
+        password: "qwerty123456"
+        database: "testDB"
+        dbtable: test
+
