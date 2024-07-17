@@ -1,0 +1,8 @@
+.idea
+*.iml
+*.tar.gz
+venv
+id_rsa
+id_rsa.pem
+/pipelines/pipeline_marketing.yml
+*.sw[a-z]

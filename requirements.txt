@@ -1,0 +1,9 @@
+pandas
+numpy
+argparse
+dynaconf
+pyspark==3.5.0
+python-gitlab
+requests
+pyyaml
+venv-pack
