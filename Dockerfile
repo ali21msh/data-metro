@@ -11,9 +11,9 @@ RUN python -m venv /app/venv && export PATH="/app/venv/bin:$PATH" &&  \
 COPY . .
 
 ENV PATH="/app/venv/bin:$PATH"
-ENV GIT_URL=-"https://github.com/ali21msh"
-ENV GIT_ACCESS_TOKEN="glpat-GUAtbvckyfy8wqwnuwzw"
-ENV GIT_REPO_ID=115
+ENV GIT_URL=-"https://git.mediana.ir/data/metro-pipelines"
+ENV GIT_ACCESS_TOKEN="glpat-Mx64LNJ--DSNxRUHPs8S"
+ENV GIT_REPO_ID=293
 ENV PIPELINE_PATH=pipeline.yml
 ENV PROFILE=production
 ENV PYSPARK_DRIVER_PYTHON=python

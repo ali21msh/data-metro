@@ -9,12 +9,25 @@ settings:
   "spark.executor.memory": "2g"
 
 nodes:
-  test_mysql_db:
+  test_clickhouse_db:
     type: "source"
     stream: false
     format: jdbc
     options:
       driver: "com.clickhouse.jdbc.ClickHouseDriver"
+      url: "jdbc:clickhouse:http://0.0.0.0:8123/testDB"
+      user: "default"
+      password: ""
+      database: "testDB"
+      query: |
+        select * from testDB.test
+
+  test_mysql_db:
+    type: "source"
+    stream: false
+    format: jdbc
+    options:
+      driver: "com.mysql.jdbc.Driver"
       url: "jdbc:clickhouse:http://0.0.0.0:8123/testDB"
       user: "default"
       password: ""
@@ -31,13 +44,23 @@ nodes:
       query: |
        SELECT * FROM test_mysql_db
 
+    test-process2:
+    type: "processor"
+    format: query
+    options:
+      parents:
+        - test_mysql_db
+        - test-process
+      query: |
+        SELECT * FROM test_mysql_db inner join test-process on t1.id = t2.id
+
 
   sink_data:
       type: sink
       stream: false
       format: jdbc
       parent: "test-process"
-      mode: append
+      mode: overwrite
       options:
         driver: "com.mysql.jdbc.Driver"
         url: "jdbc:mysql://0.0.0.0:3306/testDB"
